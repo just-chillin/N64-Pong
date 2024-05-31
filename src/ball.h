@@ -4,6 +4,7 @@
 
 struct ball {
   int x, y;
+  int direction_x, direction_y;
 };
 
 struct ball make_ball();

@@ -25,7 +25,8 @@ void init_subsystems() {
 
   controller_init();
 
-  display_init(RESOLUTION_320x240, DEPTH_16_BPP, 2, GAMMA_NONE, ANTIALIAS_RESAMPLE);
+  display_init(RESOLUTION_320x240, DEPTH_16_BPP, 2, GAMMA_NONE,
+               ANTIALIAS_RESAMPLE);
 }
 
 struct game {
@@ -33,17 +34,17 @@ struct game {
   struct ball ball;
 };
 
-void tick(struct game* game) {
-    // console_render();
-    controller_scan();
-    surface_t* display = display_get();
-    graphics_fill_screen(display, 0);
+void tick(struct game *game) {
+  // console_render();
+  controller_scan();
+  surface_t *display = display_get();
+  graphics_fill_screen(display, 0);
 
-    update_player(&game->players[0], display);
-    update_player(&game->players[1], display);
-    update_ball(&game->ball, display);
+  update_player(&game->players[0], display);
+  update_player(&game->players[1], display);
+  update_ball(&game->ball, display);
 
-    display_show(display);
+  display_show(display);
 }
 
 int main(void) {
@@ -52,8 +53,8 @@ int main(void) {
   struct controller_data controller_data;
 
   struct game game = {
-    .players = {make_player(0), make_player(1)},
-    .ball = make_ball(),
+      .players = {make_player(0), make_player(1)},
+      .ball = make_ball(),
   };
 
   while (1) {
