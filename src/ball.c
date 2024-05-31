@@ -1,14 +1,21 @@
 #include "ball.h"
 
 struct ball make_ball() {
+    // Determine the center of the screen
+    int center_x = display_get_width() / 2;
+    int center_y = display_get_height() / 2;
     struct ball ball = {
-        .x = 0,
-        .y = 0
+        .x = center_x,
+        .y = center_y
     };
     return ball;
 }
 
-void update_ball(surface_t* display) {
+void render_ball(surface_t* display) {
+
+}
+
+void update_ball(struct ball* ball, surface_t* display) {
     // Get the current vector
     // Update the position based on the vector
     // Check for collisions
@@ -17,5 +24,5 @@ void update_ball(surface_t* display) {
 
     // print the address of display
     printf("display address: %p\n", display);
-    // graphics_draw_box(display, 100, 100, 100, 100, graphics_make_color(255, 255, 0, 255));
+    render_ball(display);
 }

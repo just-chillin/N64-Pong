@@ -41,7 +41,7 @@ void tick(struct game* game) {
 
     update_player(&game->players[0], display);
     update_player(&game->players[1], display);
-    update_ball(display);
+    update_ball(&game->ball, display);
 
     display_show(display);
 }
