@@ -5,6 +5,11 @@
 #include "ball.h"
 #include "player.h"
 
+struct game {
+  struct player players[2];
+  struct ball ball;
+};
+
 /**
  * @brief Gets inputs from the players
  *
@@ -29,11 +34,6 @@ void init_subsystems() {
                ANTIALIAS_RESAMPLE);
 }
 
-struct game {
-  struct player players[2];
-  struct ball ball;
-};
-
 void tick(struct game *game) {
   // console_render();
   controller_scan();
@@ -42,7 +42,7 @@ void tick(struct game *game) {
 
   update_player(&game->players[0], display);
   update_player(&game->players[1], display);
-  update_ball(&game->ball, display);
+  update_ball(&game->ball, game->players, display);
 
   display_show(display);
 }
