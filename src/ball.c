@@ -25,13 +25,16 @@ void bounce(struct ball *ball, struct player *players) {
   // Check for collisions against the players
   for (int i = 0; i < 2; i++) {
     struct player player = players[i];
-    if (coordinate_collides_with(&player, ball->x, ball->y)) {
+    if (coordinate_collides_with(&player, ball->x, ball->y) ||
+        coordinate_collides_with(&player, ball->x + SIZE, ball->y + SIZE)) {
       ball->direction_x *= -1;
+      
     }
   }
-} 
+}
 
-void update_ball(struct ball *ball, struct player *players, surface_t *display) {
+void update_ball(struct ball *ball, struct player *players,
+                 surface_t *display) {
   // Get the current vector
   // Update the position based on the vector
   move_ball(ball);

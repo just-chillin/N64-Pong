@@ -10,7 +10,7 @@ struct player make_player(int id) {
 }
 
 int get_x(struct player *player) {
-  return player->id == 0 ? 10 : display_get_width() - 10;
+  return player->id == 0 ? WIDTH : display_get_width() - WIDTH;
 }
 
 void render_player(struct player *player, surface_t *display) {
@@ -47,6 +47,7 @@ bool coordinate_collides_with(struct player *player, int x, int y) {
   bool within_y_bounds = y >= player->y && y <= player->y + HEIGHT;
   
   int player_x = get_x(player);
+  printf("player_x: %d, x=%d\n", player_x, x);
   bool within_x_bounds = x >= player_x && x <= player_x + WIDTH;
 
   return within_x_bounds && within_y_bounds;
