@@ -7,6 +7,7 @@ const extern int PLAYER_HEIGHT;
 struct player {
   int id;
   int y;
+  int points;
 };
 
 struct player make_player(int id);

@@ -10,6 +10,13 @@ struct ball make_ball() {
       .x = center_x, .y = center_y, .direction_x = 1, .direction_y = .5};
 }
 
+void reset_ball(struct ball *ball) {
+  ball->x = display_get_width() / 2;
+  ball->y = display_get_height() / 2;
+  ball->direction_x = 1;
+  ball->direction_y = .5;
+}
+
 void render_ball(struct ball *ball, surface_t *display) {
   graphics_draw_box(display, ball->x, ball->y, SIZE, SIZE,
                     graphics_make_color(255, 255, 255, 255));
@@ -42,6 +49,17 @@ void bounce(struct ball *ball, struct player *players) {
   // Check for collisions against the top and bottom of the screen
   if (ball->y < 0 || ball->y + SIZE > display_get_height()) {
     ball->direction_y *= -1;
+  }
+
+  // Check for collisions against the left of the screen
+  if (ball->x < 0) {
+    reset_ball(ball);
+    players[1].points++;
+  }
+
+  if (ball->x + SIZE > display_get_width()) {
+    reset_ball(ball);
+    players[0].points++;
   }
 }
 

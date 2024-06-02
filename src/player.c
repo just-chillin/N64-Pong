@@ -5,7 +5,7 @@ const int WIDTH = 10;
 const int PLAYER_HEIGHT = 30;
 
 struct player make_player(int id) {
-  struct player player = {.id = id, .y = 0};
+  struct player player = {.id = id, .y = 0, .points = 0};
   return player;
 }
 

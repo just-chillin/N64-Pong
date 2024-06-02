@@ -4,6 +4,7 @@
 
 #include "ball.h"
 #include "player.h"
+#include "score.h"
 
 struct game {
   struct player players[2];
@@ -43,6 +44,7 @@ void tick(struct game *game) {
   update_player(&game->players[0], display);
   update_player(&game->players[1], display);
   update_ball(&game->ball, game->players, display);
+  render_score(display, game->players[0].points, game->players[1].points);
 
   display_show(display);
 }
