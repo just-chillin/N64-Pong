@@ -11,7 +11,7 @@ You can also copy the build output to an everdrive64 and play it on real hardwar
 
 ### Dependencies
 - https://github.com/anacierdem/libdragon-docker. This sets up the build container and allows you to execute make commands in it.
-- https://docs.docker.com/get-docker/
+- https://docs.docker.com/get-docker/. Required to run the build container.
 - https://ares-emu.net/. Ares is an accurate n64 emulator. Make sure it's installed to `/Applications` because that's how it's configured on my machine. You CANNOT use mupen64 or any other emulator because they rely on HLE, which is incompatible with libdragon.
 
 Easier instructions TODO
