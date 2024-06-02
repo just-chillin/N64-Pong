@@ -5,8 +5,10 @@
 #include "player.h"
 
 struct ball {
-  int x, y;
-  int direction_x, direction_y;
+  int x;
+  float y;
+  int direction_x;
+  float direction_y;
 };
 
 struct ball make_ball();

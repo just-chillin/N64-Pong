@@ -7,7 +7,7 @@ struct ball make_ball() {
   int center_x = display_get_width() / 2;
   int center_y = display_get_height() / 2;
   return (struct ball){
-      .x = center_x, .y = center_y, .direction_x = 1, .direction_y = 0};
+      .x = center_x, .y = center_y, .direction_x = 1, .direction_y = .5};
 }
 
 void render_ball(struct ball *ball, surface_t *display) {
@@ -21,6 +21,13 @@ void move_ball(struct ball *ball) {
   ball->y += ball->direction_y;
 }
 
+float calculate_bounce(struct ball *ball, struct player *player) {
+  int midpoint = player->y + PLAYER_HEIGHT / 2;
+  int distance_y_m = abs(midpoint - ball->y);
+  float dy = -4 / PLAYER_HEIGHT * distance_y_m + 1;
+  return dy * ball->direction_y;
+}
+
 void bounce(struct ball *ball, struct player *players) {
   // Check for collisions against the players
   for (int i = 0; i < 2; i++) {
@@ -28,8 +35,13 @@ void bounce(struct ball *ball, struct player *players) {
     if (coordinate_collides_with(&player, ball->x, ball->y) ||
         coordinate_collides_with(&player, ball->x + SIZE, ball->y + SIZE)) {
       ball->direction_x *= -1;
-      
+      ball->direction_y = calculate_bounce(ball, &player);
     }
+  }
+
+  // Check for collisions against the top and bottom of the screen
+  if (ball->y < 0 || ball->y + SIZE > display_get_height()) {
+    ball->direction_y *= -1;
   }
 }
 

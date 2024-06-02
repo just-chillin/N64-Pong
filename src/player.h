@@ -2,6 +2,8 @@
 
 #include <libdragon.h>
 
+const extern int PLAYER_HEIGHT;
+
 struct player {
   int id;
   int y;
